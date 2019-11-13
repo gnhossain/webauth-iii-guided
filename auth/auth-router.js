@@ -1,11 +1,15 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); //1: npm i jsonwebtoken
+
 const Users = require('../users/users-model.js');
 
 // for endpoints beginning with /api/auth
 router.post('/register', (req, res) => {
   let user = req.body;
+  
+ //alway validate the data before sending it to the db
+
   const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
   user.password = hash;
 
